@@ -2,7 +2,7 @@ function Form() {
     return (
         <form>
             <div className="input-wrapper">
-                <label htmlFor="username">Username</label>
+                <label>Username</label>
                 <input
                     type="text"
                     id="username"
@@ -10,7 +10,7 @@ function Form() {
                     />
             </div>
             <div className="input-wrapper">
-                <label htmlFor="password">Password</label>
+                <label>Password</label>
                 <input
                     type="password"
                     id="password"
@@ -19,7 +19,7 @@ function Form() {
             </div>
             <div className="input-remember">
                 <input type="checkbox" id="remember-me" />
-                <label htmlFor="remember-me">Remember me</label>
+                <label>Remember me</label>
             </div>
             <button type="submit" className="sign-in-button">Sign In</button>
 
