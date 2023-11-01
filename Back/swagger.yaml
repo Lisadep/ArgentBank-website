@@ -156,3 +156,127 @@ definitions:
     properties:
       userName:
         type: string
+
+# Transactions
+
+  /user/{accountId}/transactions:
+  get:
+    tags:
+      - User Account Transactions
+    summary: Get User Account Transactions
+    description: Get transactions of a specific user account with optional filtering by month
+    parameters:
+      - name: Authorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - name: accountId
+        in: path
+        description: User Account ID
+        required: true
+        type: string
+      - name: month
+        in: query
+        description: Specific month (e.g., '2023-11' for November 2023)
+        required: false
+        type: string
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: '#/definitions/ResponseDetails'
+      '400':
+        description: Invalid values
+      '500':
+        description: Internal Server Error
+    security:
+      - Bearer: []
+  post:
+    tags:
+      - User Account Transactions
+    summary: Create a new transaction
+    description: Create a new transaction for a specific user account
+    parameters:
+      - name: Authorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - name: accountId
+        in: path
+        description: User Account ID
+        required: true
+        type: string
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    requestBody:
+      description: Transaction details
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/TransactionInput'
+    responses:
+      '201':
+        description: Transaction created successfully
+        schema:
+          $ref: '#/definitions/TransactionDetails'
+      '400':
+        description: Invalid values
+      '500':
+        description: Internal Server Error
+    security:
+      - Bearer: []
+  /user/{accountId}/transactions/{transactionId}:
+  put:
+    tags:
+      - User Account Transactions
+    summary: Update a transaction
+    description: Update an existing transaction for a specific user account
+    parameters:
+      - name: Authorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - name: accountId
+        in: path
+        description: User Account ID
+        required: true
+        type: string
+      - name: transactionId
+        in: path
+        description: Transaction ID
+        required: true
+        type: string
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    requestBody:
+      description: Updated Transaction details
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/TransactionInput'
+    responses:
+      '200':
+        description: Transaction updated successfully
+        schema:
+          $ref: '#/definitions/TransactionDetails'
+      '400':
+        description: Invalid values
+      '404':
+        description: Transaction not found
+      '500':
+        description: Internal Server Error
+    security:
+      - Bearer: []
