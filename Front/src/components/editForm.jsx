@@ -54,7 +54,7 @@ function EditButton({ userData }) {
 
   return (
     <>
-      <button className="edit-button" onClick={openModal}>
+      <button className="edit-button edit-modal" onClick={openModal}>
         Edit Name
       </button>
       {isModalOpen && (

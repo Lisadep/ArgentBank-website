@@ -279,7 +279,11 @@ i {
 }
 
 .edit-section {
-  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.edit-modal {
+margin-bottom: 30px;
 }
 
 .edit-button {

@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../redux/store';
 import callAPI from '../api/callApi';
-import '../style/main.css'
-
 
 function Form() {
     const [email, setEmail] = useState('');
