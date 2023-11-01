@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getUserData } from "../redux/store";
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { getUserData } from "../redux/store"
 import callAPI from "../api/callApi"
-import EditForm from "../components/editform"
+import EditButton from "../components/EditButton"
 
 function User() {
 
@@ -28,8 +28,9 @@ function User() {
     return (
       <main class="main bg-dark">
         <div className="header">
-                <h1>Welcome back<br />{userProfile.firstName} {userProfile.lastName}!</h1>
+                <h1 class="name">Welcome back<br />{userProfile.firstName} {userProfile.lastName}!</h1>
             </div>
+            <EditButton/>
         <h2 class="sr-only">Accounts</h2>
         <section class="account">
           <div class="account-content-wrapper">

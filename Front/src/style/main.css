@@ -13,12 +13,27 @@ body {
   min-height: 100vh;
 }
 
+i {
+  margin-right: 5px
+}
+
 .main {
   flex: 1;
 }
 
 .bg-dark {
   background-color: #12002b;
+  padding-bottom: 20px;
+}
+
+.name {
+  padding-top: 20px;
+}
+
+.sign-bg-dark {
+  background-color: #12002b;
+  padding-top: 3px;
+  padding-bottom: 20px;
 }
 
 .sr-only {
@@ -71,7 +86,7 @@ body {
 }
 
 .hero {
-  background-image: url('../assets/img/bank-tree.jpeg');
+  background-image: url('../assets/img/bank-tree.jpg');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -178,6 +193,11 @@ body {
   font-size: 5rem;
 }
 
+.input-firstname, .input-lastname {
+  background-color: lightgrey;
+
+}
+
 .input-remember {
   display: flex;
 }
@@ -251,12 +271,50 @@ body {
   flex: 1;
 }
 
+.edit-form {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.edit-section {
+  margin-top: 30px;
+}
+
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
+}
+
+.edit-name-form {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.edit-name-form > .edit-button {
+  width: 50%;
+  margin: auto;
+}
+
+.input-wrapper > label {
+  color: white;
+}
+
+.cancel-btn, .save-btn {
+  width: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 .header {
