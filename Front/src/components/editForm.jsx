@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { editUserData } from "../redux/store"
-import callAPI from "../api/callApi"
+import callAPI from "../services/apiServices"
 
-function EditButton({ userData }) {
-  // État local pour gérer l'ouverture et la fermeture de la modal
+function EditForm({ userData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // État local pour stocker le nouveau nom d'utilisateur
+    // État local pour stocker le nouveau nom d'utilisateur à éditer
   const [newUserName, setNewUserName] = useState(
     userData?.body?.userName || ""
   );
-  // Récupération du jeton d'authentification et du profil utilisateur depuis le store Redux
-  const token = useSelector((state) => state.signIn.token);
-  const userProfile = useSelector((state) => state.userProfile);
-  // Dispatch Redux pour mettre à jour les données utilisateur
+  const token = useSelector((state) => state.signIn.token); // Récup du token depuis le Redux store
+  const userProfile = useSelector((state) => state.userProfile); // Récup infos utlisateur
   const dispatch = useDispatch();
 
+  // Ouverture/fermeture modal
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -24,30 +22,27 @@ function EditButton({ userData }) {
     setIsModalOpen(false);
   };
 
-  // Fonction pour gérer la sauvegarde des modifications du nom d'utilisateur
+  // Fonction pour sauvegarder la modification du nom d'utilisateur
   const handleSave = async () => {
     try {
-      // Requête pour envoyer le nouveau nom d'utilisateur à l'API
       const response = await callAPI("putUserName", token, {
         userName: newUserName,
       });
 
-      // Appel de l'action Redux pour stocker le nouveau nom d'utilisateur
-      dispatch(editUserData(newUserName));
+      dispatch(editUserData(newUserName)); // dispatch de l'action
 
-      // Ferme la modal après avoir enregistré les modifications
       closeModal();
 
       return response;
     } catch (error) {
       console.error(
-        "Erreur lors de la mise à jour du nom d'utilisateur :",
+        "Error updating username :",
         error
       );
     }
   };
 
-  // Utilisation de useEffect pour mettre à jour newUserName lorsque userProfile.userName change
+  // Effet déclenché lorsque le nom d'utilisateur change dans le Redux store
   useEffect(() => {
     setNewUserName(userProfile.userName);
   }, [userProfile.userName]);
@@ -108,4 +103,4 @@ function EditButton({ userData }) {
   );
 }
 
-export default EditButton;
+export default EditForm;
