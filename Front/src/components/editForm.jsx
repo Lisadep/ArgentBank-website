@@ -42,7 +42,7 @@ function EditForm({ userData }) {
     }
   };
 
-  // Effet déclenché lorsque le nom d'utilisateur change dans le Redux store
+  // Effet déclenché chaque fois que la valeur de userProfile.userName change dans le Redux store
   useEffect(() => {
     setNewUserName(userProfile.userName);
   }, [userProfile.userName]);

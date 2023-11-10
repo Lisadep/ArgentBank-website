@@ -23,6 +23,7 @@ export const callAPI = async (infos, token, data = {}) => {
     
     const callAPIData = apiCalls[infos]; // Récupération des informations spécifiques à l'appel d'API
     
+    // Vérifie si les informations pour l'appel d'API existent
     if (!callAPIData) {
         console.error("Error on API connection call");
         return;
@@ -46,6 +47,7 @@ export const callAPI = async (infos, token, data = {}) => {
             const errorData = await response.json(); // capture de la réponse JSON de l'API
             throw new Error (errorData.message); //affiche l'erreur
         }
+        
         return await response.json();
 
     } catch (error) { //gestion d'une erreur lors de l'appel
