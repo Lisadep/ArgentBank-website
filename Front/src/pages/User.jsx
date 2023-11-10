@@ -8,7 +8,7 @@ function User() {
 
   const token = useSelector(state => state.signIn.token) // Récupération de la valeur du token stocké dans le slice signIn
   const userProfile = useSelector((state) => state.userProfile) // Récupération des infos de l'utilisateur
-  const dispatch = useDispatch()
+  const dispatch = useDispatch() // Envoi des actions à l'état global
 
   useEffect(() => {
       const getUserProfile = async () => {
