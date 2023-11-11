@@ -4,48 +4,43 @@ import { editUserData } from "../redux/store"
 import callAPI from "../services/apiServices"
 
 function EditForm({ userData }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-    // État local pour stocker le nouveau nom d'utilisateur à éditer
-  const [newUserName, setNewUserName] = useState(
-    userData?.body?.userName || ""
-  );
-  const token = useSelector((state) => state.signIn.token); // Récup du token depuis le Redux store
-  const userProfile = useSelector((state) => state.userProfile); // Récup infos utlisateur
-  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  // État local pour stocker le nouveau nom d'utilisateur à éditer
+  const [newUserName, setNewUserName] = useState(userData?.body?.userName || "")
+  const token = useSelector((state) => state.signIn.token) // Récup du token depuis le Redux store
+  const userProfile = useSelector((state) => state.userProfile) // Récup infos utlisateur
+  const dispatch = useDispatch()
 
   // Ouverture/fermeture modal
   const openModal = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const closeModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   // Fonction pour sauvegarder la modification du nom d'utilisateur
   const handleSave = async () => {
     try {
       const response = await callAPI("putUserName", token, {
         userName: newUserName,
-      });
+      })
 
-      dispatch(editUserData(newUserName)); // dispatch de l'action
+      dispatch(editUserData(newUserName)) // dispatch de l'action
 
-      closeModal();
+      closeModal()
 
-      return response;
+      return response
     } catch (error) {
-      console.error(
-        "Error updating username :",
-        error
-      );
+      console.error("Error updating username :", error)
     }
-  };
+  }
 
   // Effet déclenché chaque fois que la valeur de userProfile.userName change dans le Redux store
   useEffect(() => {
-    setNewUserName(userProfile.userName);
-  }, [userProfile.userName]);
+    setNewUserName(userProfile.userName)
+  }, [userProfile.userName])
 
   return (
     <>
@@ -100,7 +95,7 @@ function EditForm({ userData }) {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default EditForm;
+export default EditForm
